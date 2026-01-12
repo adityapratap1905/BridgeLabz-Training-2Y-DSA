@@ -1,0 +1,63 @@
+PROBLEM 3: Space Complexity and Space-Time Tradeoffs
+
+a) Time complexity
+
+Implementation A (Nested loop):
+For each prerequisite (m), scan completed courses (n)
+Time = m * n
+So complexity: O(mn)
+
+Implementation B (HashSet):
+Build HashSet from completed courses: O(n)
+Check prerequisites in set: O(m)
+Total complexity: O(n + m)
+
+b) Space complexity
+
+Implementation A:
+Uses constant extra space
+Space: O(1)
+
+Implementation B:
+Stores n elements in hash set
+Space: O(n)
+
+c) Given:
+n = 40, m = 5, students = 100,000 per day
+
+Implementation A total comparisons per day:
+per student = mn = 540 = 200
+per day = 200 * 100,000 = 20,000,000 comparisons/day
+
+Implementation B total memory usage per day:
+Each hash set entry uses 8 bytes
+memory per student = 40 * 8 = 320 bytes
+memory for 100,000 students = 320 * 100,000 = 32,000,000 bytes
+= about 30 MB
+
+d) Constraints:
+(i) Response time under 10ms per check
+(ii) Memory under 1GB for 10,000 concurrent requests
+Each comparison takes 0.1 microseconds
+
+Implementation A time:
+200 comparisons * 0.1 microseconds = 20 microseconds
+= 0.02 ms (under 10 ms)
+
+Implementation B memory:
+memory per request = 320 bytes
+10,000 requests = 320 * 10,000 = 3,200,000 bytes
+= about 3.2 MB (under 1 GB)
+
+Conclusion:
+Implementation B is preferred because it is faster for large data and still within memory constraints.
+
+e) Hybrid approach
+
+If m is very small (1-2 prerequisites):
+Use Implementation A because overhead of hash set is unnecessary.
+
+If m is large (20+ prerequisites):
+Use Implementation B because it avoids repeated scanning.
+
+For n = 40, switching at around m = 3 is reasonable.

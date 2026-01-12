@@ -1,0 +1,69 @@
+PROBLEM 4: Asymptotic Notation Applications
+
+a) Big-O proof example (Bubble Sort)
+
+Bubble sort worst-case comparisons:
+T(n) = n(n-1)/2
+
+T(n) <= n^2/2
+
+So we can choose:
+c = 1/2, n0 = 1
+
+Therefore:
+T(n) <= c * n^2 for n >= n0
+
+Hence bubble sort worst case = O(n^2)
+
+Merge sort:
+Always divides the array into halves and merges, so worst case is Theta(n log n).
+
+b) Match data type with best algorithm
+
+Type A (nearly sorted):
+Insertion Sort is best because its best case is O(n)
+
+Type B (random):
+Merge Sort or Quick Sort
+Merge is safer because it guarantees Theta(n log n)
+
+Type C (reverse sorted):
+Merge Sort is best because it still stays Theta(n log n)
+
+c) Difference between Theta(n log n) and O(n log n)
+
+Theta(n log n):
+Means the algorithm always grows exactly like n log n (tight bound)
+
+O(n log n):
+Means n log n is only an upper bound (algorithm can sometimes be worse or better)
+
+Merge sort is Theta(n log n) because it always behaves the same.
+Quick sort is average O(n log n) but worst case O(n^2), so average is described using O.
+
+d) Decision tree based on data size and characteristics
+
+If n < 50:
+Use Insertion Sort
+
+If 50 <= n < 10,000:
+
+nearly sorted or sorted: Insertion Sort
+
+random: Quick Sort
+
+reverse: Merge Sort
+
+If n >= 10,000:
+Use Merge Sort because it is guaranteed Theta(n log n) and stable for large data.
+
+e) Mystery Sort vs Merge Sort
+
+Mystery Sort:
+T(n) = 5n^2 + 100n + 1000
+
+Merge Sort:
+T(n) = 10n log2 n
+
+For large n, n^2 grows faster than n log n.
+So Mystery Sort will only be faster for very small n, and for large values Merge Sort will always be faster.

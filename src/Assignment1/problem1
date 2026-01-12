@@ -1,0 +1,145 @@
+PROBLEM 1: Algorithm Properties and Correctness
+
+a) Check both algorithms using the five fundamental properties
+
+Algorithm A:
+
+Input:
+
+Takes temperature[1..n] and n as input.
+
+Output:
+
+Returns average temperature.
+
+Definiteness:
+
+Every step is clearly defined.
+
+Finiteness:
+
+Loop runs exactly n times and stops.
+
+Effectiveness:
+
+Uses basic operations (addition and division) which can be performed easily.
+
+Conclusion:
+Algorithm A satisfies all five properties and is correct.
+
+Algorithm B:
+
+Input:
+
+Takes temperature[1..n] and n as input.
+
+Output:
+
+Returns sum (intended to represent average).
+
+Definiteness:
+
+Steps are clear.
+
+Finiteness:
+
+Both loops end after finite steps.
+
+Effectiveness:
+
+Uses valid operations.
+
+Conclusion:
+Algorithm B satisfies the algorithm properties technically, but it is logically incorrect because it does not compute the correct average.
+
+b) Step-by-step execution for input:
+temperatures = [20, 25, 22, 24, 21], n = 5
+
+Algorithm A:
+total = 0
+i=1: total = 0 + 20 = 20
+i=2: total = 20 + 25 = 45
+i=3: total = 45 + 22 = 67
+i=4: total = 67 + 24 = 91
+i=5: total = 91 + 21 = 112
+average = total / n = 112 / 5 = 22.4
+
+Output = 22.4 (Correct)
+
+Algorithm B:
+sum = temperature[1] = 20
+
+First loop (adding):
+i=2: sum = 20 + 25 = 45
+i=3: sum = 45 + 22 = 67
+i=4: sum = 67 + 24 = 91
+i=5: sum = 91 + 21 = 112
+
+Second loop (division repeated):
+i=1: sum = 112 / 5 = 22.4
+i=2: sum = 22.4 / 5 = 4.48
+i=3: sum = 4.48 / 5 = 0.896
+i=4: sum = 0.896 / 5 = 0.1792
+i=5: sum = 0.1792 / 5 = 0.03584
+
+Output = 0.03584 (Incorrect)
+
+c) Identify the logical error in Algorithm B
+
+Error:
+Algorithm B divides the sum by n inside a loop that runs n times.
+
+Correct method:
+Average = Total / n (division should happen only once)
+
+But Algorithm B effectively computes:
+Total / (n^n)
+
+This violates the mathematical principle of averaging because repeated division reduces the value incorrectly.
+
+d) Compare Algorithm A and Algorithm B
+
+Algorithm A:
+
+Simple and easy to understand
+
+Produces correct output
+
+Time complexity is O(n)
+
+Algorithm B:
+
+More confusing
+
+Produces incorrect output
+
+Even though time complexity is O(n), it is not usable due to incorrect logic
+
+Production choice:
+Algorithm A should be used because correctness is the most important requirement.
+
+e) Test strategy (minimum 5 test cases)
+
+Normal case
+Input: [20, 25, 22, 24, 21], n=5
+Expected: 22.4
+
+Single day case
+Input: [30], n=1
+Expected: 30
+
+Zero days case
+Input: [], n=0
+Expected: should handle division by zero (error or return 0 safely)
+
+Negative temperatures
+Input: [-5, -10, -3], n=3
+Expected: -6
+
+Same temperatures
+Input: [10, 10, 10, 10], n=4
+Expected: 10
+
+Large input
+Input: 10,000 random temperature values
+Expected: correct average and good performance
